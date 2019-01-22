@@ -58,7 +58,7 @@ function buel(type, ...opt) {
      */
     if (isHTML(o)) {
       el.innerHTML = o;
-    } else if (isStringRange(o)) {
+    } else if (isString(o)) {
       el.innerText = o;
     }
   });
