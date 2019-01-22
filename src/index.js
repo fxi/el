@@ -6,26 +6,31 @@ function buel(type, ...opt) {
   var item;
   opt.forEach(o => {
     /**
-    * Object part el("div",{Object})
-    */
+     * Object part buel("div",{Object})
+     */
     if (isObject(o)) {
       Object.keys(o).forEach(a => {
         item = o[a];
-        if (a == "on" && isArray(item) && isString(item[0]) && isFunction(item[1])) {
+        if (
+          a == 'on' &&
+          isArray(item) &&
+          isString(item[0]) &&
+          isFunction(item[1])
+        ) {
           el.addEventListener(item[0], item[1]);
-        } else if (a == "on" && isObject(item)) {
+        } else if (a == 'on' && isObject(item)) {
           Object.keys(item).forEach(i => {
-            if(isFunction(item[i])){
+            if (isFunction(item[i])) {
               el.addEventListener(i, item[i]);
             }
           });
-        } else if (a == "innerText" && isString(item)) {
+        } else if (a == 'innerText' && isString(item)) {
           el.innerText = item;
-        } else if ((a == "dataset" || a == "style") && isObject(item)) {
+        } else if ((a == 'dataset' || a == 'style') && isObject(item)) {
           Object.keys(item).forEach(i => {
             el[a][i] = item[i];
           });
-        } else if (a == "class" && isArray(item)) {
+        } else if (a == 'class' && isArray(item)) {
           item.forEach(c => el.classList.add(c));
         } else {
           el.setAttribute(a, o[a]);
@@ -33,8 +38,8 @@ function buel(type, ...opt) {
       });
     }
     /**
-    * Array part el("div",[Array])
-    */
+     * Array part buel("div",[Array])
+     */
     if (isArray(o)) {
       o.forEach(elChildren => {
         if (isElement(elChildren)) {
@@ -43,20 +48,19 @@ function buel(type, ...opt) {
       });
     }
     /**
-    * Element part el("div",>Element>)
-    */
+     * Element part buel("div",>Element>)
+     */
     if (isElement(o)) {
       el.appendChild(o);
     }
     /**
-    * HTML part el("div",>Element>)
-    */
+     * HTML part buel("div",>Element>)
+     */
     if (isHTML(o)) {
       el.innerHTML = o;
-    }else if (isStringRange(o)) {
+    } else if (isStringRange(o)) {
       el.innerText = o;
     }
-
   });
 
   return el;
@@ -67,7 +71,7 @@ function buel(type, ...opt) {
  * @param {Array} item
  */
 function isObject(item) {
-  return (!!item && typeof item === 'object' && !Array.isArray(item));
+  return !!item && typeof item === 'object' && !Array.isArray(item);
 }
 
 /**
@@ -75,7 +79,7 @@ function isObject(item) {
  * @param {Array} item array
  */
 function isArray(item) {
-  return (!!item && typeof item === 'object' && Array.isArray(item));
+  return !!item && typeof item === 'object' && Array.isArray(item);
 }
 
 /**
@@ -95,17 +99,16 @@ function isJson(str) {
  * Test if entry is numeric
  * @param {String|Number} n string or number to test
  */
-function isNumeric(n){
+function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
-
 
 /**
  * Test if string contain HTML
  * @param {String} n string to test
  * @note https://stackoverflow.com/questions/15458876/check-if-a-string-is-html-or-not#answer-36773193
  */
-function isHTML(str){
+function isHTML(str) {
   var test = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
   return test(str);
 }
@@ -114,14 +117,14 @@ function isHTML(str){
  * Test if entry is string
  * @param {String} str string to test
  */
-function isString(str){
-  return typeof str === "string";
+function isString(str) {
+  return typeof str === 'string';
 }
 /**
  * Test if entry is function
  * @param {Function} fun Function to test
  */
-function isFunction(fun){
+function isFunction(fun) {
   return fun instanceof Function;
 }
 
@@ -132,5 +135,3 @@ function isFunction(fun){
 function isElement(obj) {
   return obj instanceof Element;
 }
-
-
