@@ -109,8 +109,7 @@ function isNumeric(n) {
  * @note https://stackoverflow.com/questions/15458876/check-if-a-string-is-html-or-not#answer-36773193
  */
 function isHTML(str) {
-  var test = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
-  return test(str);
+  return isString(str) && /(<([^>]+)>)/i.test(str);
 }
 
 /**
