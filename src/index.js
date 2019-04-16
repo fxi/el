@@ -28,7 +28,7 @@ function el(type, ...opt) {
           elOut.innerText = item;
         } else if ((a == 'dataset' || a == 'style') && isObject(item)) {
           Object.keys(item).forEach((i) => {
-            el[a][i] = item[i];
+            elOut[a][i] = item[i];
           });
         } else if (a == 'class' && isArray(item)) {
           item.forEach((c) => elOut.classList.add(c));
