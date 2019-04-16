@@ -6,7 +6,7 @@ function el(type, ...opt) {
   var item;
   opt.forEach((o) => {
     /**
-     * Object part buel("div",{Object})
+     * Object part el("div",{Object})
      */
     if (isObject(o)) {
       Object.keys(o).forEach((a) => {
@@ -38,7 +38,7 @@ function el(type, ...opt) {
       });
     }
     /**
-     * Array part buel("div",[Array])
+     * Array part el("div",[Array])
      */
     if (isArray(o)) {
       o.forEach((elChildren) => {
@@ -48,13 +48,13 @@ function el(type, ...opt) {
       });
     }
     /**
-     * Element part buel("div",>Element>)
+     * Element part el("div",>Element>)
      */
     if (isElement(o)) {
       elOut.appendChild(o);
     }
     /**
-     * HTML part buel("div",>Element>)
+     * HTML part el("div",>Element>)
      */
     if (isHTML(o)) {
       elOut.innerHTML = o;
@@ -63,7 +63,7 @@ function el(type, ...opt) {
     }
   });
 
-  return el;
+  return elOut;
 }
 
 /**
