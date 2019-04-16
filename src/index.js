@@ -1,15 +1,15 @@
 /* jshint esversion:6 */
-export {buel};
+export {el};
 
-function buel(type, ...opt) {
-  var el = document.createElement(type);
+function el(type, ...opt) {
+  var elOut = document.createElement(type);
   var item;
-  opt.forEach(o => {
+  opt.forEach((o) => {
     /**
      * Object part buel("div",{Object})
      */
     if (isObject(o)) {
-      Object.keys(o).forEach(a => {
+      Object.keys(o).forEach((a) => {
         item = o[a];
         if (
           a == 'on' &&
@@ -17,23 +17,23 @@ function buel(type, ...opt) {
           isString(item[0]) &&
           isFunction(item[1])
         ) {
-          el.addEventListener(item[0], item[1]);
+          elOut.addEventListener(item[0], item[1]);
         } else if (a == 'on' && isObject(item)) {
-          Object.keys(item).forEach(i => {
+          Object.keys(item).forEach((i) => {
             if (isFunction(item[i])) {
-              el.addEventListener(i, item[i]);
+              elOut.addEventListener(i, item[i]);
             }
           });
         } else if (a == 'innerText' && isString(item)) {
-          el.innerText = item;
+          elOut.innerText = item;
         } else if ((a == 'dataset' || a == 'style') && isObject(item)) {
-          Object.keys(item).forEach(i => {
+          Object.keys(item).forEach((i) => {
             el[a][i] = item[i];
           });
         } else if (a == 'class' && isArray(item)) {
-          item.forEach(c => el.classList.add(c));
+          item.forEach((c) => elOut.classList.add(c));
         } else {
-          el.setAttribute(a, o[a]);
+          elOut.setAttribute(a, o[a]);
         }
       });
     }
@@ -41,9 +41,9 @@ function buel(type, ...opt) {
      * Array part buel("div",[Array])
      */
     if (isArray(o)) {
-      o.forEach(elChildren => {
+      o.forEach((elChildren) => {
         if (isElement(elChildren)) {
-          el.appendChild(elChildren);
+          elOut.appendChild(elChildren);
         }
       });
     }
@@ -51,15 +51,15 @@ function buel(type, ...opt) {
      * Element part buel("div",>Element>)
      */
     if (isElement(o)) {
-      el.appendChild(o);
+      elOut.appendChild(o);
     }
     /**
      * HTML part buel("div",>Element>)
      */
     if (isHTML(o)) {
-      el.innerHTML = o;
+      elOut.innerHTML = o;
     } else if (isString(o)) {
-      el.innerText = o;
+      elOut.innerText = o;
     }
   });
 
