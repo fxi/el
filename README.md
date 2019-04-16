@@ -1,4 +1,4 @@
-# buel
+# el
 
 Quick DOM elements creation in js
 
@@ -6,16 +6,16 @@ Quick DOM elements creation in js
 ## Installing
 
 ```js
-npm install --save buel
+npm install --save el
 ````
 
 ## Usage
 
 ```js
-import {buel} from 'buel';
+import {el} from '@fxi/el';
 
-buel('div',
-  buel('canvas',{
+el('div',
+  el('canvas',{
     width: 300,
     height: 300,
     on : { 'click' : console.log }

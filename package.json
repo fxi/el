@@ -1,5 +1,5 @@
 {
-  "name": "buel",
+  "name": "@fxi/el",
   "version": "0.0.3",
   "repository": {
     "type": "git",
@@ -29,9 +29,9 @@
     "webpack-dev-server": "^3.1.10"
   },
   "bugs": {
-    "url": "https://github.com/fxi/buel/issues"
+    "url": "https://github.com/fxi/el/issues"
   },
-  "homepage": "https://github.com/fxi/buel#readme",
+  "homepage": "https://github.com/fxi/el#readme",
   "directories": {
     "lib": "lib"
   }
