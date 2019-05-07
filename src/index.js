@@ -8,7 +8,7 @@ function el(type, ...opt) {
     /**
      * Object part el("div",{Object})
      */
-    if (isObject(o)) {
+    if (isObject(o) && !isArray(o)) {
       Object.keys(o).forEach((a) => {
         item = o[a];
         if (
