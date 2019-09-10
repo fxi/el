@@ -56,7 +56,7 @@ function el(type, ...opt) {
     /**
      * HTML part el("div",>Element>)
      */
-    if (isHTML(o)) {
+    if (isHTML(o) || type === 'style') {
       elOut.innerHTML = o;
     } else if (isString(o)) {
       elOut.innerText = o;
