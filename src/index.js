@@ -66,10 +66,10 @@ function el(type, ...opt) {
   return elOut;
 
   function setContent(str) {
-    if (isHTML(o) || type === 'style') {
-      elOut.innerHTML = o;
-    } else if (isString(o)) {
-      elOut.innerText = o;
+    if (isHTML(str) || type === 'style') {
+      elOut.innerHTML = str;
+    } else if (isString(str)) {
+      elOut.innerText = str;
     }
   }
 }
