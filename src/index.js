@@ -56,14 +56,22 @@ function el(type, ...opt) {
     /**
      * HTML part el("div",>Element>)
      */
+    if (isPromise(o)) {
+      o.then(setContent);
+    } else {
+      setContent(o);
+    }
+  });
+
+  return elOut;
+
+  function setContent(str) {
     if (isHTML(o) || type === 'style') {
       elOut.innerHTML = o;
     } else if (isString(o)) {
       elOut.innerText = o;
     }
-  });
-
-  return elOut;
+  }
 }
 
 /**
@@ -84,7 +92,7 @@ function isArray(item) {
 
 /**
  * Test if entry is JSON
- * @param {String} String to test
+ * @param {String} str String to test
  */
 function isJson(str) {
   try {
@@ -105,11 +113,19 @@ function isNumeric(n) {
 
 /**
  * Test if string contain HTML
- * @param {String} n string to test
+ * @param {String} str string to test
  * @note https://stackoverflow.com/questions/15458876/check-if-a-string-is-html-or-not#answer-36773193
  */
 function isHTML(str) {
   return isString(str) && /(<([^>]+)>)/i.test(str);
+}
+
+/**
+ * Test if it's a promise
+ * @param {Promise} prom Promise to test
+ */
+function isPromise(prom) {
+  return prom instanceof Promise;
 }
 
 /**
